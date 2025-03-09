@@ -20,8 +20,6 @@ const filename = args[1];
 
 
 const fileContent = fs.readFileSync(filename, "utf8");
-console.error(fileContent.includes("("))
-console.error(fileContent.includes("{"))
 
 if (fileContent.length === 0) {
   throw error("error File empty")
