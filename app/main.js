@@ -21,10 +21,6 @@ const filename = args[1];
 
 const fileContent = fs.readFileSync(filename, "utf8");
 
-if (fileContent.length === 0) {
-  console.error(`error File empty: ${filename}`);
-  process.exit(1);
-}
 if (fileContent.length !== 0) {
   let lines = fileContent.split('\n');
 
