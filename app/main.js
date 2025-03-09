@@ -20,21 +20,42 @@ const filename = args[1];
 
 
 const fileContent = fs.readFileSync(filename, "utf8");
-
+if (fileContent.length === 0) {
+  throw error("error File empty")
+}
 if (fileContent.length !== 0) {
   let lines = fileContent.split('\n');
-  for (let i = 0; i < lines.length; i++) {
-    for (let j = 0; j < lines[i].length; j++) {
-      switch (lines[i][j]) {
-        case '(':
-          console.log("LEFT_PAREN ( null");
-          break;
-        case ')':
-          console.log("RIGHT_PAREN ) null");
-          break;
+  if (fileContent.includes("(") && fileContent.includes(")")) {
+    for (let i = 0; i < lines.length; i++) {
+      for (let j = 0; j < lines[i].length; j++) {
+        switch (lines[i][j]) {
+          case '(':
+            console.log("LEFT_PAREN ( null");
+            break;
+          case ')':
+            console.log("RIGHT_PAREN ) null");
+            break;
+        }
       }
     }
   }
+  if (fileContent.includes("{") && fileContent.includes("}")) {
+
+    for (let i = 0; i < lines.length; i++) {
+      for (let j = 0; j < lines[i].length; j++) {
+        switch (lines[i][j]) {
+          case '{':
+            console.log("LEFT_BRACE { null");
+            break;
+          case '}':
+            console.log("RIGHT_BRACE } null");
+            break;
+        }
+
+      }
+    }
+  }
+
 }
 console.log("EOF  null");
 
