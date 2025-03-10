@@ -49,7 +49,7 @@ if (fileContent.length !== 0) {
           console.log("COMMA , null");
           break;
         case '+':
-          console.log("PLUS , null");
+          console.log("PLUS + null");
           break;
       }
     }
