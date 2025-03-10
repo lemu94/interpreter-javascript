@@ -73,7 +73,7 @@ if (fileContent.length !== 0) {
 
 }
 console.log("EOF  null");
-if (error) {
+if (error === true) {
   process.exit(65);
 }
 else {
