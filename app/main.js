@@ -61,11 +61,11 @@ if (fileContent.length !== 0) {
         case '$':
           error = true;
           console.error("[line 1] Error: Unexpected character: $");
-          break;
+          process.exit(65);
         case '#':
           error = true;
           console.error("[line 1] Error: Unexpected character: #");
-          break;
+          process.exit(65);
       }
     }
   }
@@ -73,9 +73,6 @@ if (fileContent.length !== 0) {
 
 }
 console.log("EOF  null");
-if (error === true) {
-  process.exit(65);
-}
-else {
+if (!error) {
   process.exit(0);
 }
