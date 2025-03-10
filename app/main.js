@@ -51,6 +51,12 @@ if (fileContent.length !== 0) {
         case '+':
           console.log("PLUS + null");
           break;
+        case '-':
+          console.log("MINUS - null");
+          break;
+        case ';':
+          console.log("SEMICOLON ; null");
+          break;
       }
     }
   }
