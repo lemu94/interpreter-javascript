@@ -20,59 +20,31 @@ const filename = args[1];
 
 
 const fileContent = fs.readFileSync(filename, "utf8");
-const error = false;
-
+const invalidTokens = ["$", "#", "@", "%"];
+let hasInvalidToken = false
 if (fileContent.length !== 0) {
-  let lines = fileContent.split('\n');
-
-  for (let i = 0; i < lines.length; i++) {
-    for (let j = 0; j < lines[i].length; j++) {
-      switch (lines[i][j]) {
-        case '(':
-          console.log("LEFT_PAREN ( null");
-          break;
-        case ')':
-          console.log("RIGHT_PAREN ) null");
-          break;
-        case '{':
-          console.log("LEFT_BRACE { null");
-          break;
-        case '}':
-          console.log("RIGHT_BRACE } null");
-          break;
-        case '*':
-          console.log("STAR * null");
-          break;
-        case '.':
-          console.log("DOT . null");
-          break;
-        case ",":
-          console.log("COMMA , null");
-          break;
-        case '+':
-          console.log("PLUS + null");
-          break;
-        case '-':
-          console.log("MINUS - null");
-          break;
-        case ';':
-          console.log("SEMICOLON ; null");
-          break;
-        case '$':
-          error = true;
-          console.error("[line 1] Error: Unexpected character: $");
-          process.exit(65);
-        case '#':
-          error = true;
-          console.error("[line 1] Error: Unexpected character: #");
-          process.exit(65);
+  const lines = fileContent.split("\n")
+  lines.forEach((line, index) => {
+    for (const char of line) {
+      if (invalidTokens.includes(char)) {
+        hasInvalidToken = true
+        console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`)
       }
+      if (char === "(") console.log("LEFT_PAREN ( null")
+      if (char === ")") console.log("RIGHT_PAREN ) null")
+      if (char === "{") console.log("LEFT_BRACE { null")
+      if (char === "}") console.log("RIGHT_BRACE } null")
+      if (char === ",") console.log("COMMA , null")
+      if (char === ".") console.log("DOT . null")
+      if (char === "-") console.log("MINUS - null")
+      if (char === "+") console.log("PLUS + null")
+      if (char === ";") console.log("SEMICOLON ; null")
+      if (char === "*") console.log("STAR * null")
     }
-  }
-
-
+  })
+  console.log("EOF  null")
 }
-console.log("EOF  null");
-if (!error) {
-  process.exit(0);
+else console.log("EOF  null")
+if (hasInvalidToken) {
+  process.exit(65)
 }
