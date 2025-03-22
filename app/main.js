@@ -21,30 +21,45 @@ const filename = args[1];
 
 const fileContent = fs.readFileSync(filename, "utf8");
 const invalidTokens = ["$", "#", "@", "%"];
-let hasInvalidToken = false
+let hasInvalidToken = false;
+
 if (fileContent.length !== 0) {
-  const lines = fileContent.split("\n")
+  const lines = fileContent.split("\n");
   lines.forEach((line, index) => {
-    for (const char of line) {
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+
       if (invalidTokens.includes(char)) {
-        hasInvalidToken = true
-        console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`)
+        hasInvalidToken = true;
+        console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
       }
-      if (char === "(") console.log("LEFT_PAREN ( null")
-      if (char === ")") console.log("RIGHT_PAREN ) null")
-      if (char === "{") console.log("LEFT_BRACE { null")
-      if (char === "}") console.log("RIGHT_BRACE } null")
-      if (char === ",") console.log("COMMA , null")
-      if (char === ".") console.log("DOT . null")
-      if (char === "-") console.log("MINUS - null")
-      if (char === "+") console.log("PLUS + null")
-      if (char === ";") console.log("SEMICOLON ; null")
-      if (char === "*") console.log("STAR * null")
+
+      if (char === "(") console.log("LEFT_PAREN ( null");
+      if (char === ")") console.log("RIGHT_PAREN ) null");
+      if (char === "{") console.log("LEFT_BRACE { null");
+      if (char === "}") console.log("RIGHT_BRACE } null");
+      if (char === ",") console.log("COMMA , null");
+      if (char === ".") console.log("DOT . null");
+      if (char === "-") console.log("MINUS - null");
+      if (char === "+") console.log("PLUS + null");
+      if (char === ";") console.log("SEMICOLON ; null");
+      if (char === "*") console.log("STAR * null");
+
+      if (char === "=") {
+        if (line[i + 1] === "=") {
+          console.log("EQUAL_EQUAL == null");
+          i++;
+        } else {
+          console.log("EQUAL = null");
+        }
+      }
     }
-  })
-  console.log("EOF  null")
+  });
+  console.log("EOF  null");
+} else {
+  console.log("EOF  null");
 }
-else console.log("EOF  null")
+
 if (hasInvalidToken) {
   process.exit(65)
 }
