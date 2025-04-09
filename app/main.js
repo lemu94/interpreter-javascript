@@ -64,16 +64,16 @@ if (fileContent.length !== 0) {
       }
 
       if(char ==="<"){
-        if(line[i +1] === "<"){
-          console.log("LESS_EQUAL << null");
+        if(line[i +1] === "="){
+          console.log("LESS_EQUAL <= null");
           i++;
         } else{
           console.log("LESS < null");
         }
       }
       if(char === ">") {
-        if(line[i+1] === ">"){
-          console.log("GREATER_EQUAL >> null");
+        if(line[i+1] === "="){
+          console.log("GREATER_EQUAL >= null");
           i++;
         } else {
           console.log("GREATER > null");
