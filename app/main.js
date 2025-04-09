@@ -62,6 +62,22 @@ if (fileContent.length !== 0) {
           console.log("EQUAL = null");
         }
       }
+
+      if(char ==="<"){
+        if(line[i +1] === "<"){
+          console.log("LESS_EQUAL << null");
+          i++;
+        } else{
+          console.log("LESS < null");
+        }
+      }
+      if(char === ">") {
+        if(line[i+1] === ">"){
+          console.log("GREATER_EQUAL >> null");
+        } else {
+          console.log("GREATER > null");
+        }
+      }
     }
   });
   console.log("EOF  null");
