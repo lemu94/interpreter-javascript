@@ -44,6 +44,15 @@ if (fileContent.length !== 0) {
       if (char === "+") console.log("PLUS + null");
       if (char === ";") console.log("SEMICOLON ; null");
       if (char === "*") console.log("STAR * null");
+      
+      if (char === "!") {
+      if(line[i + 1] === "="){
+          console.log("BANG_EQUAL != null");
+        }
+        else {
+          console.log("BANG ! null");
+        }
+      }
 
       if (char === "=") {
         if (line[i + 1] === "=") {
