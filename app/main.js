@@ -46,10 +46,10 @@ if (fileContent.length !== 0) {
       if (char === "*") console.log("STAR * null");
       
       if (char === "!") {
-      if(line[i + 1] === "="){
+        if (line[i + 1] === "=") {
           console.log("BANG_EQUAL != null");
-        }
-        else {
+          i++;
+        } else {
           console.log("BANG ! null");
         }
       }
