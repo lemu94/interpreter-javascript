@@ -74,6 +74,7 @@ if (fileContent.length !== 0) {
       if(char === ">") {
         if(line[i+1] === ">"){
           console.log("GREATER_EQUAL >> null");
+          i++;
         } else {
           console.log("GREATER > null");
         }
