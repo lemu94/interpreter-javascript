@@ -29,7 +29,10 @@ let hasInvalidToken = false;
 
 if (fileContent.length !== 0) {
   const lines = fileContent.split("\n");
+
+
   lines.forEach((line, index) => {
+    
     for (let i = 0; i < line.length; i++) {
       const char = line[i];
 
@@ -37,6 +40,14 @@ if (fileContent.length !== 0) {
         hasInvalidToken = true;
         console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
       }
+
+  }})
+
+
+  lines.forEach((line, index) => {
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
 
       if (char === "(") console.log("LEFT_PAREN ( null");
       if (char === ")") console.log("RIGHT_PAREN ) null");
