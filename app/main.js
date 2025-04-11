@@ -30,10 +30,16 @@ let hasInvalidToken = false;
 if (fileContent.length !== 0) {
   const lines = fileContent.replace("\t","").trim().split("\n");
 
+
   lines.forEach((line, index) => {
     
     for (let i = 0; i < line.length; i++) {
       const char = line[i];
+
+      if (invalidTokens.includes(char)) {
+        hasInvalidToken = true;
+        console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
+      }
 
       if (char === "(") console.log("LEFT_PAREN ( null");
       if (char === ")") console.log("RIGHT_PAREN ) null");
