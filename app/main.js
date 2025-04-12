@@ -28,12 +28,15 @@ if(fileContent.indexOf(commentToken) !== -1){
 let hasInvalidToken = false;
 
 if (fileContent.length !== 0) {
-  const lines = fileContent.replace("\t","").trim().split("\n");
+  const lines = fileContent.replace("\t","").trim.split("\n");
 
   lines.forEach((line, index) => {
     
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
+    // Supprimer les commentaires sur la ligne (mais garder le reste)
+    const cleanLine = line.split("//")[0];
+
+    for (let i = 0; i < cleanLine.length; i++) {
+      const char = cleanLine[i];
 
       if (invalidTokens.includes(char)) {
         hasInvalidToken = true;
@@ -44,8 +47,12 @@ if (fileContent.length !== 0) {
 
   lines.forEach((line, index) => {
     
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
+    // Supprimer les commentaires sur la ligne (mais garder le reste)
+    const cleanLine = line.split("//")[0];
+
+    for (let i = 0; i < cleanLine.length; i++) {
+
+      const char = cleanLine[i];
 
     
       if (char === "(") console.log("LEFT_PAREN ( null");
@@ -61,7 +68,7 @@ if (fileContent.length !== 0) {
       if (char === "/") console.log("SLASH / null");
       
       if (char === "!") {
-        if (line[i + 1] === "=") {
+        if (cleanLine[i + 1] === "=") {
           console.log("BANG_EQUAL != null");
           i++;
         } else {
@@ -70,7 +77,7 @@ if (fileContent.length !== 0) {
       }
 
       if (char === "=") {
-        if (line[i + 1] === "=") {
+        if (cleanLine[i + 1] === "=") {
           console.log("EQUAL_EQUAL == null");
           i++;
         } else {
@@ -79,7 +86,7 @@ if (fileContent.length !== 0) {
       }
 
       if(char ==="<"){
-        if(line[i +1] === "="){
+        if(cleanLine[i +1] === "="){
           console.log("LESS_EQUAL <= null");
           i++;
         } else{
@@ -87,7 +94,7 @@ if (fileContent.length !== 0) {
         }
       }
       if(char === ">") {
-        if(line[i+1] === "="){
+        if(cleanLine[i+1] === "="){
           console.log("GREATER_EQUAL >= null");
           i++;
         } else {
