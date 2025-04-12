@@ -1,35 +1,35 @@
-import fs from "fs";
+import fs from 'fs';
 
 const args = process.argv.slice(2);
 
 if (args.length < 2) {
-  console.error("Usage: ./your_program.sh tokenize <filename>");
+  console.error('Usage: ./your_program.sh tokenize <filename>');
   process.exit(1);
 }
 
 const command = args[0];
 
-if (command !== "tokenize") {
+if (command !== 'tokenize') {
   console.error(`Usage: Unknown command: ${command}`);
   process.exit(1);
 }
 
-console.error("Logs from your program will appear here!");
+console.error('Logs from your program will appear here!');
 
 const filename = args[1];
 
 
-let fileContent = fs.readFileSync(filename, "utf8");
-const invalidTokens = ["$", "#", "@", "%"];
+let fileContent = fs.readFileSync(filename, 'utf8');
+const invalidTokens = ['$', '#', '@', '%'];
 let hasInvalidToken = false;
 
 if (fileContent.length !== 0) {
-  const lines = fileContent.replace("\t", "").trim().split("\n");
+  const lines = fileContent.replace('\t', '').trim().split('\n');
 
   lines.forEach((line, index) => {
     
     // Supprimer les commentaires sur la ligne (mais garder le reste)
-    const cleanLine = line.split("//")[0];
+    const cleanLine = line.split('//')[0];
 
     for (let i = 0; i < cleanLine.length; i++) {
       const char = cleanLine[i];
@@ -41,73 +41,110 @@ if (fileContent.length !== 0) {
 
   }})
 
-  lines.forEach((line) => {
+
+  lines.forEach((line,index) => {
     
     // Supprimer les commentaires sur la ligne (mais garder le reste)
-    const cleanLine = line.split("//")[0];
-
+    const cleanLine = line.split('//')[0];
     for (let i = 0; i < cleanLine.length; i++) {
 
       const char = cleanLine[i];
+
     
-      if (char === "(") console.log("LEFT_PAREN ( null");
-      if (char === ")") console.log("RIGHT_PAREN ) null");
-      if (char === "{") console.log("LEFT_BRACE { null");
-      if (char === "}") console.log("RIGHT_BRACE } null");
-      if (char === ",") console.log("COMMA , null");
-      if (char === ".") console.log("DOT . null");
-      if (char === "-") console.log("MINUS - null");
-      if (char === "+") console.log("PLUS + null");
-      if (char === ";") console.log("SEMICOLON ; null");
-      if (char === "*") console.log("STAR * null");
-      if (char === "/") console.log("SLASH / null");
+      if (char === '(') console.log('LEFT_PAREN ( null');
+      if (char === ')') console.log('RIGHT_PAREN ) null');
+      if (char === '{') console.log('LEFT_BRACE { null');
+      if (char === '}') console.log('RIGHT_BRACE } null');
+      if (char === ',') console.log('COMMA , null');
+      if (char === '.') console.log('DOT . null');
+      if (char === '-') console.log('MINUS - null');
+      if (char === '+') console.log('PLUS + null');
+      if (char === ';') console.log('SEMICOLON ; null');
+      if (char === '*') console.log('STAR * null');
+      if (char === '/') console.log('SLASH / null');
       
-      if (char === "!") {
-        if (cleanLine[i + 1] === "=") {
-          console.log("BANG_EQUAL != null");
+      if (char === '!') {
+        if (cleanLine[i + 1] === '=') {
+          console.log('BANG_EQUAL != null');
           i++;
         } else {
-          console.log("BANG ! null");
+          console.log('BANG ! null');
         }
       }
 
-      if (char === "=") {
-        if (cleanLine[i + 1] === "=") {
-          console.log("EQUAL_EQUAL == null");
+      if (char === '=') {
+        if (cleanLine[i + 1] === '=') {
+          console.log('EQUAL_EQUAL == null');
           i++;
         } else {
-          console.log("EQUAL = null");
+          console.log('EQUAL = null');
         }
       }
 
-      if(char ==="<"){
-        if(cleanLine[i +1] === "="){
-          console.log("LESS_EQUAL <= null");
+      if(char ==='<'){
+        if(cleanLine[i +1] === '='){
+          console.log('LESS_EQUAL <= null');
           i++;
         } else{
-          console.log("LESS < null");
+          console.log('LESS < null');
         }
       }
-      if(char === ">") {
-        if(cleanLine[i+1] === "="){
-          console.log("GREATER_EQUAL >= null");
+      if(char === '>') {
+        if(cleanLine[i+1] === '='){
+          console.log('GREATER_EQUAL >= null');
           i++;
         } else {
-          console.log("GREATER > null");
+          console.log('GREATER > null');
         }
+      }
+
+
+      if(char === '"'){
+        var stringChar ='';
+        var firstindexchar = i;
+        let lastindexChar = -1;
+        var presence = false;
+
+        if(firstindexchar !== cleanLine.length-1){
+          presence = true;
+          for(let j = firstindexchar; j < cleanLine.length ; j++){
+            presence = true;
+            var charQt = cleanLine[j+1];
+            if (charQt === '"'){
+                lastindexChar = j;
+                break;
+            }
+            else {
+                stringChar = stringChar + charQt;
+            }
+          }
+        }
+        
+        if(presence) {
+          if (lastindexChar === -1){
+            console.error(`[line ${index + 1}] Error: Unterminated string`);
+         }
+         else {
+             console.log(`STRING "${stringChar}" ${stringChar}`);
+         }
+        }
+
+
       }
       
 
     }
   });
-  console.log("EOF  null");
+  console.log('EOF  null');
   if (hasInvalidToken) {
     process.exit(65)
   } else {
     process.exit(0);
   }
 } else {
-  console.log("EOF  null");
+  console.log('EOF  null');
 }
+
+
 
 
