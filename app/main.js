@@ -90,7 +90,7 @@ if (fileContent.length !== 0) {
 
       if (char === '/' && !between(position_char,i)) {
         if (cleanLine[i + 1] === '/') {
-          i++;
+          break;
         }
         else{
           console.log('SLASH / null');
