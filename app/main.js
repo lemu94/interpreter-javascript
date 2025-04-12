@@ -46,6 +46,7 @@ if (fileContent.length !== 0) {
     
     // Supprimer les commentaires sur la ligne (mais garder le reste)
     const cleanLine = line.split('//')[0];
+    let position_char =[];
     for (let i = 0; i < cleanLine.length; i++) {
 
       const char = cleanLine[i];
@@ -98,20 +99,20 @@ if (fileContent.length !== 0) {
         }
       }
 
-
-      if(char === '"'){
+      if(char === '"' && !position_char.includes(i)){
+        position_char.push(i);
         var stringChar ='';
         var firstindexchar = i;
         let lastindexChar = -1;
         var presence = false;
 
         if(firstindexchar !== cleanLine.length-1){
-          presence = true;
           for(let j = firstindexchar; j < cleanLine.length ; j++){
             presence = true;
             var charQt = cleanLine[j+1];
             if (charQt === '"'){
-                lastindexChar = j;
+                position_char.push(j+1)
+                lastindexChar = j+1;
                 break;
             }
             else {
