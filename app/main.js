@@ -21,10 +21,6 @@ const filename = args[1];
 
 let fileContent = fs.readFileSync(filename, "utf8");
 const invalidTokens = ["$", "#", "@", "%"];
-const commentToken ="//";
-if(fileContent.indexOf(commentToken) !== -1){
-  fileContent = fileContent.substring(0, fileContent.indexOf(commentToken)).trim();
-}
 let hasInvalidToken = false;
 
 if (fileContent.length !== 0) {
