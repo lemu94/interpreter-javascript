@@ -22,7 +22,6 @@ const filename = args[1];
 let fileContent = fs.readFileSync(filename, 'utf8');
 const invalidTokens = ['$', '#', '@', '%'];
 let hasInvalidToken = false;
-let hasInvalidExpression = false;
 
 if (fileContent.length !== 0) {
   const lines = fileContent.replace('\t', '').trim().split('\n');
@@ -114,7 +113,6 @@ if (fileContent.length !== 0) {
         if(presence) {
           if (lastindexChar === -1){
             console.error(`[line ${index + 1}] Error: Unterminated string`);
-            hasInvalidToken = true;
          }
          else {
              console.log(`STRING "${stringChar}" ${stringChar}`);
