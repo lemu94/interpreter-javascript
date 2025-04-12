@@ -41,54 +41,6 @@ if (fileContent.length !== 0) {
         console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
       }
 
-    
-      if (char === '(') console.log('LEFT_PAREN ( null');
-      if (char === ')') console.log('RIGHT_PAREN ) null');
-      if (char === '{') console.log('LEFT_BRACE { null');
-      if (char === '}') console.log('RIGHT_BRACE } null');
-      if (char === ',') console.log('COMMA , null');
-      if (char === '.') console.log('DOT . null');
-      if (char === '-') console.log('MINUS - null');
-      if (char === '+') console.log('PLUS + null');
-      if (char === ';') console.log('SEMICOLON ; null');
-      if (char === '*') console.log('STAR * null');
-      if (char === '/') console.log('SLASH / null');
-      
-      if (char === '!') {
-        if (cleanLine[i + 1] === '=') {
-          console.log('BANG_EQUAL != null');
-          i++;
-        } else {
-          console.log('BANG ! null');
-        }
-      }
-
-      if (char === '=') {
-        if (cleanLine[i + 1] === '=') {
-          console.log('EQUAL_EQUAL == null');
-          i++;
-        } else {
-          console.log('EQUAL = null');
-        }
-      }
-
-      if(char ==='<'){
-        if(cleanLine[i +1] === '='){
-          console.log('LESS_EQUAL <= null');
-          i++;
-        } else{
-          console.log('LESS < null');
-        }
-      }
-      if(char === '>') {
-        if(cleanLine[i+1] === '='){
-          console.log('GREATER_EQUAL >= null');
-          i++;
-        } else {
-          console.log('GREATER > null');
-        }
-      }
-
       if(char === '"' && !position_char.includes(i)){
         position_char.push(i);
         var stringChar ='';
@@ -123,6 +75,56 @@ if (fileContent.length !== 0) {
 
 
       }
+
+    
+      if (char === '(' && !position_char.includes(i)) console.log('LEFT_PAREN ( null');
+      if (char === ')' && !position_char.includes(i)) console.log('RIGHT_PAREN ) null');
+      if (char === '{' && !position_char.includes(i)) console.log('LEFT_BRACE { null');
+      if (char === '}' && !position_char.includes(i)) console.log('RIGHT_BRACE } null');
+      if (char === ',' && !position_char.includes(i)) console.log('COMMA , null');
+      if (char === '.' && !position_char.includes(i)) console.log('DOT . null');
+      if (char === '-' && !position_char.includes(i)) console.log('MINUS - null');
+      if (char === '+' && !position_char.includes(i)) console.log('PLUS + null');
+      if (char === ';' && !position_char.includes(i)) console.log('SEMICOLON ; null');
+      if (char === '*' && !position_char.includes(i)) console.log('STAR * null');
+      if (char === '/' && !position_char.includes(i)) console.log('SLASH / null');
+      
+      if (char === '!'  && !position_char.includes(i)) {
+        if (cleanLine[i + 1] === '=') {
+          console.log('BANG_EQUAL != null');
+          i++;
+        } else {
+          console.log('BANG ! null');
+        }
+      }
+
+      if (char === '='  && !position_char.includes(i)) {
+        if (cleanLine[i + 1] === '=') {
+          console.log('EQUAL_EQUAL == null');
+          i++;
+        } else {
+          console.log('EQUAL = null');
+        }
+      }
+
+      if(char ==='<'  && !position_char.includes(i)){
+        if(cleanLine[i +1] === '='){
+          console.log('LESS_EQUAL <= null');
+          i++;
+        } else{
+          console.log('LESS < null');
+        }
+      }
+      if(char === '>'  && !position_char.includes(i)) {
+        if(cleanLine[i+1] === '='){
+          console.log('GREATER_EQUAL >= null');
+          i++;
+        } else {
+          console.log('GREATER > null');
+        }
+      }
+
+
       
 
     }
