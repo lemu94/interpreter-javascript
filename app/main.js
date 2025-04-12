@@ -113,7 +113,7 @@ if (fileContent.length !== 0) {
         if(presence) {
           if (lastindexChar === -1){
             hasInvalidToken = true;
-            console.error(`[line ${index + 1}] Error: Unterminated string`);
+            console.error(`[line ${index + 1}] Error: Unterminated string.`);
          }
          else {
              console.log(`STRING "${stringChar}" ${stringChar}`);
