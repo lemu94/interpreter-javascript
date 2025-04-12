@@ -40,6 +40,13 @@ if (fileContent.length !== 0) {
         console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
       }
 
+  }})
+
+  lines.forEach((line, index) => {
+    
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+
     
       if (char === "(") console.log("LEFT_PAREN ( null");
       if (char === ")") console.log("RIGHT_PAREN ) null");
