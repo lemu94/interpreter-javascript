@@ -26,6 +26,20 @@ let hasInvalidToken = false;
 if (fileContent.length !== 0) {
   const lines = fileContent.replace("\t", "").trim().split("\n");
 
+  lines.forEach((line, index) => {
+    
+    // Supprimer les commentaires sur la ligne (mais garder le reste)
+    const cleanLine = line.split("//")[0];
+
+    for (let i = 0; i < cleanLine.length; i++) {
+      const char = cleanLine[i];
+
+      if (invalidTokens.includes(char)) {
+        hasInvalidToken = true;
+        console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
+      }
+
+  }})
 
   lines.forEach((line) => {
     
@@ -35,12 +49,6 @@ if (fileContent.length !== 0) {
     for (let i = 0; i < cleanLine.length; i++) {
 
       const char = cleanLine[i];
-
-      if (invalidTokens.includes(char)) {
-        hasInvalidToken = true;
-        console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
-      }
-
     
       if (char === "(") console.log("LEFT_PAREN ( null");
       if (char === ")") console.log("RIGHT_PAREN ) null");
