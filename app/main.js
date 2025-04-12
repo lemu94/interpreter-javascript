@@ -29,7 +29,7 @@ if (fileContent.length !== 0) {
   lines.forEach((line,index) => {
     
     // Supprimer les commentaires sur la ligne (mais garder le reste)
-    const cleanLine = line.replace('//','');
+    const cleanLine = line;
 
     let position_char =[];
     for (let i = 0; i < cleanLine.length; i++) {
