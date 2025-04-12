@@ -28,7 +28,7 @@ if(fileContent.indexOf(commentToken) !== -1){
 let hasInvalidToken = false;
 
 if (fileContent.length !== 0) {
-  const lines = fileContent.replace("\t","").split("\n");
+  const lines = fileContent.replace("\t","").trim().split("\n");
 
   lines.forEach((line, index) => {
     
