@@ -37,7 +37,7 @@ if (fileContent.length !== 0) {
 
       if (invalidTokens.includes(char)) {
         hasInvalidToken = true;
-        console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
+        console.error(`[line ${index}] Error: Unexpected character: ${char}`);
       }
 
     
