@@ -114,7 +114,7 @@ if (fileContent.length !== 0) {
         if(presence) {
           if (lastindexChar === -1){
             console.error(`[line ${index + 1}] Error: Unterminated string`);
-            hasInvalidExpression = true;
+            hasInvalidToken = true;
          }
          else {
              console.log(`STRING "${stringChar}" ${stringChar}`);
@@ -128,7 +128,7 @@ if (fileContent.length !== 0) {
     }
   });
   console.log('EOF  null');
-  if (hasInvalidToken || hasInvalidExpression) {
+  if (hasInvalidToken) {
     process.exit(65)
   } else {
     process.exit(0);
