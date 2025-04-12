@@ -77,19 +77,19 @@ if (fileContent.length !== 0) {
       }
 
     
-      if (char === '(' && !position_char.includes(i)) console.log('LEFT_PAREN ( null');
-      if (char === ')' && !position_char.includes(i)) console.log('RIGHT_PAREN ) null');
-      if (char === '{' && !position_char.includes(i)) console.log('LEFT_BRACE { null');
-      if (char === '}' && !position_char.includes(i)) console.log('RIGHT_BRACE } null');
-      if (char === ',' && !position_char.includes(i)) console.log('COMMA , null');
-      if (char === '.' && !position_char.includes(i)) console.log('DOT . null');
-      if (char === '-' && !position_char.includes(i)) console.log('MINUS - null');
-      if (char === '+' && !position_char.includes(i)) console.log('PLUS + null');
-      if (char === ';' && !position_char.includes(i)) console.log('SEMICOLON ; null');
-      if (char === '*' && !position_char.includes(i)) console.log('STAR * null');
-      if (char === '/' && !position_char.includes(i)) console.log('SLASH / null');
+      if (char === '(' && !between(position_char,i)) console.log('LEFT_PAREN ( null');
+      if (char === ')' && !between(position_char,i)) console.log('RIGHT_PAREN ) null');
+      if (char === '{' && !between(position_char,i)) console.log('LEFT_BRACE { null');
+      if (char === '}' && !between(position_char,i)) console.log('RIGHT_BRACE } null');
+      if (char === ',' && !between(position_char,i)) console.log('COMMA , null');
+      if (char === '.' && !between(position_char,i)) console.log('DOT . null');
+      if (char === '-' && !between(position_char,i)) console.log('MINUS - null');
+      if (char === '+' && !between(position_char,i)) console.log('PLUS + null');
+      if (char === ';' && !between(position_char,i)) console.log('SEMICOLON ; null');
+      if (char === '*' && !between(position_char,i)) console.log('STAR * null');
+      if (char === '/' && !between(position_char,i)) console.log('SLASH / null');
       
-      if (char === '!'  && !position_char.includes(i)) {
+      if (char === '!'  && !between(position_char,i)) {
         if (cleanLine[i + 1] === '=') {
           console.log('BANG_EQUAL != null');
           i++;
@@ -98,7 +98,7 @@ if (fileContent.length !== 0) {
         }
       }
 
-      if (char === '='  && !position_char.includes(i)) {
+      if (char === '='  && !between(position_char,i)) {
         if (cleanLine[i + 1] === '=') {
           console.log('EQUAL_EQUAL == null');
           i++;
@@ -107,7 +107,7 @@ if (fileContent.length !== 0) {
         }
       }
 
-      if(char ==='<'  && !position_char.includes(i)){
+      if(char ==='<'  && !between(position_char,i)){
         if(cleanLine[i +1] === '='){
           console.log('LESS_EQUAL <= null');
           i++;
@@ -115,7 +115,7 @@ if (fileContent.length !== 0) {
           console.log('LESS < null');
         }
       }
-      if(char === '>'  && !position_char.includes(i)) {
+      if(char === '>'  && !between(position_char,i)) {
         if(cleanLine[i+1] === '='){
           console.log('GREATER_EQUAL >= null');
           i++;
@@ -139,6 +139,16 @@ if (fileContent.length !== 0) {
   console.log('EOF  null');
 }
 
+function between(tab = [], i =0){
 
+  const val = tab.sort((a,b)=>a-b);
+  if(i >= val[0] &&  i <= val[tab.length -1]){
+    return true;
+  }
+  else {
+    return false;
+  }
+
+}
 
 
