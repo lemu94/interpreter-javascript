@@ -87,7 +87,13 @@ if (fileContent.length !== 0) {
       if (char === '+' && !between(position_char,i)) console.log('PLUS + null');
       if (char === ';' && !between(position_char,i)) console.log('SEMICOLON ; null');
       if (char === '*' && !between(position_char,i)) console.log('STAR * null');
-      if (char === '/' && !between(position_char,i)) console.log('SLASH / null');
+      if (char === '/' && !between(position_char,i)) 
+      {
+        if (cleanLine[i + 1] !== '/') {
+          console.log('SLASH / null');
+          i++;
+        } 
+      }
       
       if (char === '!'  && !between(position_char,i)) {
         if (cleanLine[i + 1] === '=') {
