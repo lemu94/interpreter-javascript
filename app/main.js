@@ -28,7 +28,7 @@ if(fileContent.indexOf(commentToken) !== -1){
 let hasInvalidToken = false;
 
 if (fileContent.length !== 0) {
-  const lines = fileContent.replace("\t","").trim.split("\n");
+  const lines = fileContent.replace("\t", "").trim().split("\n");
 
   lines.forEach((line, index) => {
     
@@ -45,7 +45,7 @@ if (fileContent.length !== 0) {
 
   }})
 
-  lines.forEach((line, index) => {
+  lines.forEach((line) => {
     
     // Supprimer les commentaires sur la ligne (mais garder le reste)
     const cleanLine = line.split("//")[0];
