@@ -30,7 +30,6 @@ let hasInvalidToken = false;
 if (fileContent.length !== 0) {
   const lines = fileContent.replace("\t","").split("\n");
 
-
   lines.forEach((line, index) => {
     
     for (let i = 0; i < line.length; i++) {
@@ -41,7 +40,7 @@ if (fileContent.length !== 0) {
         console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
       }
 
-    if(!hasInvalidToken){
+    
       if (char === "(") console.log("LEFT_PAREN ( null");
       if (char === ")") console.log("RIGHT_PAREN ) null");
       if (char === "{") console.log("LEFT_BRACE { null");
@@ -88,15 +87,18 @@ if (fileContent.length !== 0) {
           console.log("GREATER > null");
         }
       }
-    }  
+      
 
     }
   });
   console.log("EOF  null");
+  if (hasInvalidToken) {
+    process.exit(65)
+  } else {
+    process.exit(0);
+  }
 } else {
   console.log("EOF  null");
 }
 
-if (hasInvalidToken) {
-  process.exit(65)
-}
+
