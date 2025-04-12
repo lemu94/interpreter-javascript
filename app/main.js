@@ -24,7 +24,7 @@ const invalidTokens = ['$', '#', '@', '%'];
 let hasInvalidToken = false;
 
 if (fileContent.length !== 0) {
-  const lines = fileContent.replace(' ', '\t').split('\n');
+  const lines = fileContent.split('\n');
 
   lines.forEach((line,index) => {
     
