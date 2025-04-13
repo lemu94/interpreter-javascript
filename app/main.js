@@ -56,8 +56,8 @@ if (fileContent.length !== 0) {
           for(let j = firstindexchar; j < cleanLine.length ; j++){
             presence = true;
             var charQt = cleanLine[j+1];
+            position_char.push(j+1)
             if (charQt === '"'){
-                position_char.push(j+1)
                 lastindexChar = j+1;
                 break;
             }
@@ -79,7 +79,7 @@ if (fileContent.length !== 0) {
       }      
     
       
-      if(!isNaN(char) && !position_nbre.includes(i)){
+      if(!isNaN(char) && !position_nbre.includes(i) && !position_char.includes(i)){
         var firstindexnbre = i;
         let lastindexnbre = -1;
         var presence = false;

@@ -1,1 +1,1 @@
-(98+39) > 26 != ("Success" != "Failure") != (14 >= 59)
+"foo <|TAB|>bar 123 // hello world!"
