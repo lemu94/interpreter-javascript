@@ -104,9 +104,13 @@ if (fileContent.length !== 0) {
             if(Nbr.indexOf(".") === -1){
               decimalNbr = parseFloat(Nbr).toFixed(1)
             }
-            var nbrAfterDot =Nbr.substring(Nbr.indexOf("."),Nbr.length);
+            var nbrAfterDot =Nbr.substring(Nbr.indexOf("."),Nbr.length );
+
             if(nbrAfterDot.split("0").length >1){
               decimalNbr = parseFloat(Nbr);
+              if(Number.isInteger(decimalNbr)){
+                decimalNbr = parseFloat(Nbr).toFixed(1);
+              }
             }
             console.log(`NUMBER ${Nbr} ${decimalNbr}`);
          }
