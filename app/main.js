@@ -89,7 +89,7 @@ if (fileContent.length !== 0) {
           var charNbr = cleanLine[j];
           if (!Number.isNaN(charNbr) || charNbr === "."){
               Nbr = Nbr + charNbr;
-              position_nbre.push(j+1);
+              position_nbre.push(j);
               lastindexnbre = j+1;
           }
 
@@ -97,7 +97,7 @@ if (fileContent.length !== 0) {
       
         if(presence) {
           if (lastindexnbre !== -1){
-            var decimalNbr =Nbr;
+            var decimalNbr = Nbr;
             if(Nbr.indexOf(".") === -1){
               decimalNbr = parseFloat(Nbr).toFixed(1)
             }
@@ -114,7 +114,7 @@ if (fileContent.length !== 0) {
       if (char === '}' && !betweenString(position_char,i)) console.log('RIGHT_BRACE } null');
       if (char === ',' && !betweenString(position_char,i)) console.log('COMMA , null');
 
-      if (char === '.' && (!betweenString(position_char,i) || !position_nbre.includes(i))) 
+      if (char === '.' && (!betweenString(position_char,i) && !position_nbre.includes(i))) 
       {
         console.log('DOT . null');
       }
