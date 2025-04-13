@@ -101,6 +101,10 @@ if (fileContent.length !== 0) {
             if(Nbr.indexOf(".") === -1){
               decimalNbr = parseFloat(Nbr).toFixed(1)
             }
+            var nbrAfterDot =Nbr.substring(Nbr.indexOf("."),Nbr.length-1);
+            if(nbrAfterDot.split("0").length>2){
+              decimalNbr = parseFloat(Nbr).toFixed(1);
+            }
             console.log(`NUMBER ${Nbr} ${decimalNbr}`);
          }
         }
