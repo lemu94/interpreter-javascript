@@ -79,18 +79,21 @@ if (fileContent.length !== 0) {
       }      
     
       
-      if(!Number.isNaN(charNombre) && !position_nbre.includes(i)){
+      if(!isNaN(char) && !position_nbre.includes(i)){
         var firstindexnbre = i;
         let lastindexnbre = -1;
         var presence = false;
         var Nbr ="";
         for(let j = firstindexnbre; j < cleanLine.length ; j++){
           presence = true;
-          var charNbr = cleanLine[j];
-          if (!Number.isNaN(charNbr) || charNbr === "."){
+          var charNbr = cleanLine[j].trim();
+          if (charNbr !== '' && !isNaN(charNbr) || charNbr === "."){
               Nbr = Nbr + charNbr;
               position_nbre.push(j);
               lastindexnbre = j+1;
+          }
+          else{
+            break;
           }
 
         }
