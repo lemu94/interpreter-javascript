@@ -101,7 +101,7 @@ if (fileContent.length !== 0) {
             if(Nbr.indexOf(".") === -1){
               decimalNbr = parseFloat(Nbr).toFixed(1)
             }
-            console.log(`NUMBER  ${Nbr} ${decimalNbr}`);
+            console.log(`NUMBER ${Nbr} ${decimalNbr}`);
          }
         }
 
