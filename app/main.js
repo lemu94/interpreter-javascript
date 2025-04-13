@@ -32,14 +32,18 @@ if (fileContent.length !== 0) {
     const cleanLine = line;
 
     let position_char =[];
+    let position_nbre = [];
     for (let i = 0; i < cleanLine.length; i++) {
 
       const char = cleanLine[i];
+
 
       if (invalidTokens.includes(char)) {
         hasInvalidToken = true;
         console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
       }
+
+      var charNombre = Number(char);
 
       if(char === '"' && !position_char.includes(i)){
         position_char.push(i);
@@ -72,23 +76,51 @@ if (fileContent.length !== 0) {
              console.log(`STRING "${stringChar}" ${stringChar}`);
          }
         }
+      }      
+    
+      
+      if(!Number.isNaN(charNombre) && !position_nbre.includes(i)){
+        var firstindexnbre = i;
+        let lastindexnbre = -1;
+        var presence = false;
+        var Nbr ="";
+        for(let j = firstindexnbre; j < cleanLine.length ; j++){
+          presence = true;
+          var charNbr = cleanLine[j];
+          if (!Number.isNaN(charNbr) || charNbr === "."){
+              Nbr = Nbr + charNbr;
+              position_nbre.push(j+1);
+              lastindexnbre = j+1;
+          }
 
+        }
+      
+        if(presence) {
+          if (lastindexnbre !== -1){
+            console.log(`NUMBER  ${Nbr} ${parseFloat(Nbr)}`);
+         }
+        }
 
       }
 
     
-      if (char === '(' && !between(position_char,i)) console.log('LEFT_PAREN ( null');
-      if (char === ')' && !between(position_char,i)) console.log('RIGHT_PAREN ) null');
-      if (char === '{' && !between(position_char,i)) console.log('LEFT_BRACE { null');
-      if (char === '}' && !between(position_char,i)) console.log('RIGHT_BRACE } null');
-      if (char === ',' && !between(position_char,i)) console.log('COMMA , null');
-      if (char === '.' && !between(position_char,i)) console.log('DOT . null');
-      if (char === '-' && !between(position_char,i)) console.log('MINUS - null');
-      if (char === '+' && !between(position_char,i)) console.log('PLUS + null');
-      if (char === ';' && !between(position_char,i)) console.log('SEMICOLON ; null');
-      if (char === '*' && !between(position_char,i)) console.log('STAR * null');
+      if (char === '(' && !betweenString(position_char,i)) console.log('LEFT_PAREN ( null');
+      if (char === ')' && !betweenString(position_char,i)) console.log('RIGHT_PAREN ) null');
+      if (char === '{' && !betweenString(position_char,i)) console.log('LEFT_BRACE { null');
+      if (char === '}' && !betweenString(position_char,i)) console.log('RIGHT_BRACE } null');
+      if (char === ',' && !betweenString(position_char,i)) console.log('COMMA , null');
 
-      if (char === '/' && !between(position_char,i)) {
+      if (char === '.' && (!betweenString(position_char,i) || !position_nbre.includes(i))) 
+      {
+        console.log('DOT . null');
+      }
+
+      if (char === '-' && !betweenString(position_char,i)) console.log('MINUS - null');
+      if (char === '+' && !betweenString(position_char,i)) console.log('PLUS + null');
+      if (char === ';' && !betweenString(position_char,i)) console.log('SEMICOLON ; null');
+      if (char === '*' && !betweenString(position_char,i)) console.log('STAR * null');
+
+      if (char === '/' && !betweenString(position_char,i)) {
         if (cleanLine[i + 1] === '/') {
           break;
         }
@@ -97,7 +129,7 @@ if (fileContent.length !== 0) {
         } 
       }
       
-      if (char === '!'  && !between(position_char,i)) {
+      if (char === '!'  && !betweenString(position_char,i)) {
         if (cleanLine[i + 1] === '=') {
           console.log('BANG_EQUAL != null');
           i++;
@@ -106,7 +138,7 @@ if (fileContent.length !== 0) {
         }
       }
 
-      if (char === '='  && !between(position_char,i)) {
+      if (char === '='  && !betweenString(position_char,i)) {
         if (cleanLine[i + 1] === '=') {
           console.log('EQUAL_EQUAL == null');
           i++;
@@ -115,7 +147,7 @@ if (fileContent.length !== 0) {
         }
       }
 
-      if(char ==='<'  && !between(position_char,i)){
+      if(char ==='<'  && !betweenString(position_char,i)){
         if(cleanLine[i +1] === '='){
           console.log('LESS_EQUAL <= null');
           i++;
@@ -123,7 +155,7 @@ if (fileContent.length !== 0) {
           console.log('LESS < null');
         }
       }
-      if(char === '>'  && !between(position_char,i)) {
+      if(char === '>'  && !betweenString(position_char,i)) {
         if(cleanLine[i+1] === '='){
           console.log('GREATER_EQUAL >= null');
           i++;
@@ -147,7 +179,7 @@ if (fileContent.length !== 0) {
   console.log('EOF  null');
 }
 
-function between(tab = [], i =0){
+function betweenString(tab = [], i =0){
 
   const val = tab.sort((a,b)=>a-b);
   if(i >= val[0] &&  i <= val[tab.length -1]){
@@ -158,5 +190,6 @@ function between(tab = [], i =0){
   }
 
 }
+
 
 
