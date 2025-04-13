@@ -97,7 +97,11 @@ if (fileContent.length !== 0) {
       
         if(presence) {
           if (lastindexnbre !== -1){
-            console.log(`NUMBER  ${Nbr} ${parseFloat(Nbr)}`);
+            var decimalNbr =Nbr;
+            if(Nbr.indexOf(".") === -1){
+              decimalNbr = parseFloat(Nbr).toFixed(1)
+            }
+            console.log(`NUMBER  ${Nbr} ${decimalNbr}`);
          }
         }
 
