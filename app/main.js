@@ -22,31 +22,21 @@ const filename = args[1];
 let fileContent = fs.readFileSync(filename, 'utf8');
 const invalidTokens = ['$', '#', '@', '%'];
 let hasInvalidToken = false;
+const regex = /[a-zA-Z_]/;
 
 if (fileContent.length !== 0) {
   const lines = fileContent.replace('<|TAB|>', '\t').split('\n');
+  console.log(lines)
+
   lines.forEach((line,index) => {
     
     // Supprimer les commentaires sur la ligne (mais garder le reste)
     const cleanLine = line;
     
-    if (cleanLine.includes("foo") || cleanLine.includes("bar") || cleanLine.includes("_hello")) {
-       const newLine = cleanLine.trim().split(/\s+/);
-       for (let i = 0; i < newLine.length; i++) {
-         if (newLine[i] === "foo") {
-           newLine[i] = "foo";
-         } else if (newLine[i] === "bar") {
-           newLine[i] = "bar";
-         } else if (newLine[i] === "_hello") {
-           newLine[i] = "_hello";
-         }
-         console.log("IDENTIFIER " + newLine[i] + " null");
-         cleanLine.replace(newLine[i],"");
-       }
-    }
 
     let position_char =[];
     let position_nbre = [];
+    let position_identifier = "";
     for (let i = 0; i < cleanLine.length; i++) {
 
       const char = cleanLine[i];
@@ -193,7 +183,15 @@ if (fileContent.length !== 0) {
         }
       }
 
+      const contient = regex.test(char);
 
+      if(!betweenString(position_char,i) && contient){
+        position_identifier = position_identifier + char;
+      }
+      if (!betweenString(position_char,i) && position_identifier !== "" && (char ===" " || i === cleanLine.length -1)) {
+          console.log("IDENTIFIER " + position_identifier + " null");
+          position_identifier ="";
+      }
       
 
     }
