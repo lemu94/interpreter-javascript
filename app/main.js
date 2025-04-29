@@ -26,8 +26,7 @@ const regex = /[a-zA-Z_]/;
 
 if (fileContent.length !== 0) {
   const lines = fileContent.replace('<|TAB|>', '\t').split('\n');
-  console.log(lines)
-
+  
   lines.forEach((line,index) => {
     
     // Supprimer les commentaires sur la ligne (mais garder le reste)
