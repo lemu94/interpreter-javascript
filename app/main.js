@@ -38,7 +38,7 @@ if (fileContent.length !== 0) {
          } else if (newLine[i] === "bar") {
            newLine[i] = "bar";
          } else if (newLine[i] === "_hello") {
-           newLine[i] = "_hello_";
+           newLine[i] = "_hello";
          }
          console.log("IDENTIFIER " + newLine[i] + " null");
          cleanLine.replace(newLine[i],"");
