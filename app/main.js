@@ -25,7 +25,6 @@ let hasInvalidToken = false;
 
 if (fileContent.length !== 0) {
   const lines = fileContent.replace('<|TAB|>', '\t').split('\n');
-  console.log(lines);
   lines.forEach((line,index) => {
     
     // Supprimer les commentaires sur la ligne (mais garder le reste)
@@ -42,6 +41,7 @@ if (fileContent.length !== 0) {
            newLine[i] = "_hello_";
          }
          console.log("IDENTIFIER " + newLine[i] + " null");
+         cleanLine.replace(newLine[i],"");
        }
     }
 
