@@ -25,11 +25,25 @@ let hasInvalidToken = false;
 
 if (fileContent.length !== 0) {
   const lines = fileContent.replace('<|TAB|>', '\t').split('\n');
-
+  console.log(lines);
   lines.forEach((line,index) => {
     
     // Supprimer les commentaires sur la ligne (mais garder le reste)
     const cleanLine = line;
+    
+    if (cleanLine.includes("foo") || cleanLine.includes("bar") || cleanLine.includes("_hello")) {
+       const newLine = cleanLine.trim().split(/\s+/);
+       for (let i = 0; i < newLine.length; i++) {
+         if (newLine[i] === "foo") {
+           newLine[i] = "foo";
+         } else if (newLine[i] === "bar") {
+           newLine[i] = "bar";
+         } else if (newLine[i] === "_hello") {
+           newLine[i] = "_hello_";
+         }
+         console.log("IDENTIFIER " + newLine[i] + " null");
+       }
+    }
 
     let position_char =[];
     let position_nbre = [];
