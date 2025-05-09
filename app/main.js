@@ -18,26 +18,28 @@ console.error('Logs from your program will appear here!');
 
 const filename = args[1];
 
-
 let fileContent = fs.readFileSync(filename, 'utf8');
 const invalidTokens = ['$', '#', '@', '%'];
 let hasInvalidToken = false;
-const regex = /[a-zA-Z_]/;
+// Regex to check for identifiers (not just numbers)
+const regex = /^(?!\d+$)(?=.*[a-zA-Z_]).+$/
+;
 
 if (fileContent.length !== 0) {
-  const lines = fileContent.replace('<|TAB|>', '\t').split('\n');
-  
+  const lines = fileContent
+  .replace(/<\|TAB\|>/g, '\t')  // Remplace <|TAB|> par des tabulations
+  .split('\n')                  // Découpe en lignes
+  .map(line => line.trim().split(/\s+/))  // Découpe chaque ligne en mots
+  .flat();  
+
   lines.forEach((line,index) => {
     
-    // Supprimer les commentaires sur la ligne (mais garder le reste)
     const cleanLine = line;
     
-
-    let position_char =[];
+    let position_char = [];
     let position_nbre = [];
     let position_identifier = "";
     for (let i = 0; i < cleanLine.length; i++) {
-
       const char = cleanLine[i];
 
 
@@ -46,8 +48,8 @@ if (fileContent.length !== 0) {
         console.error(`[line ${index + 1}] Error: Unexpected character: ${char}`);
       }
 
-      var charNombre = Number(char);
 
+      // Check for string literals
       if(char === '"' && !position_char.includes(i)){
         position_char.push(i);
         var stringChar ='';
@@ -81,8 +83,8 @@ if (fileContent.length !== 0) {
         }
       }      
     
-      
-      if(!isNaN(char) && !position_nbre.includes(i) && !position_char.includes(i)){
+      // Check for numbers
+      if(!isNaN(cleanLine) && !position_nbre.includes(i) && !position_char.includes(i)){
         var firstindexnbre = i;
         let lastindexnbre = -1;
         var presence = false;
@@ -182,11 +184,12 @@ if (fileContent.length !== 0) {
         }
       }
 
-      const contient = regex.test(char);
+      const contient = regex.test(cleanLine);
 
       if(!betweenString(position_char,i) && contient){
         position_identifier = position_identifier + char;
       }
+
       if (!betweenString(position_char,i) && position_identifier !== "" && (char ===" " || i === cleanLine.length -1)) {
           console.log("IDENTIFIER " + position_identifier + " null");
           position_identifier ="";
@@ -195,6 +198,7 @@ if (fileContent.length !== 0) {
 
     }
   });
+  
   console.log('EOF  null');
   if (hasInvalidToken) {
     process.exit(65)
@@ -204,6 +208,7 @@ if (fileContent.length !== 0) {
 } else {
   console.log('EOF  null');
 }
+
 
 function betweenString(tab = [], i =0){
 
